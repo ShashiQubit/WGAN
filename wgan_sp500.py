@@ -35,7 +35,6 @@ silence_tensorflow()
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
-import yfinance as yf
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm, wasserstein_distance, probplot
