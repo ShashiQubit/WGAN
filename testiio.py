@@ -287,7 +287,7 @@ LATENT_DIM = 8
 WINDOW_SIZE = 30
 
 # training hyperparameters
-EPOCHS = 100 #3000
+EPOCHS = 1000 #3000
 BATCH_SIZE = 32
 
 n_critic = 5 # number of iterations for the critic per epoch
