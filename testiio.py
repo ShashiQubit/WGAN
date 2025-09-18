@@ -28,6 +28,8 @@ import pandas as pd
 data = pd.read_csv("iio.csv")  # file must contain a 'value' column
 data['value'] = pd.to_numeric(data['value'], errors='coerce')
 data.dropna(subset=['value'], inplace=True)
+start_date = '2013-10-11'
+data = data[data['timestamp'] >= start_date].copy()
 series = data['value'].values.astype(float)
 
 # =============================
