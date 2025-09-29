@@ -1038,7 +1038,7 @@ class WGAN_GP(tf.keras.Model):
         # compute the Earth's mover distance (EMD)
         #
         ####################################################################################
-        bin_edges = np.linspace(-0.05, 0.05, num=50)  # define the bin edges
+        bin_edges = np.linspace(-1, 1, num=100)  # define the bin edges
         bin_width = bin_edges[1] - bin_edges[0]
         bin_edges = np.append(bin_edges, bin_edges[-1] + bin_width)
         # compute the empirical distribution of original data
@@ -1064,7 +1064,7 @@ LATENT_DIM = 8
 WINDOW_SIZE = 30
 
 # training hyperparameters
-EPOCHS = 900 #3000
+EPOCHS = 1000 #3000
 BATCH_SIZE = 32
 
 n_critic = 5 # number of iterations for the critic per epoch
@@ -1098,6 +1098,25 @@ start_time_train = time.time()
 gan.train_wgan_gp(gan_data, iio_log_r_tf, transformed_iio, num_elements)
 exec_time_train = time.time() - start_time_train
 print(f'\nWGAN training completed. Training time: --- {exec_time_train/3600:.02f} hours ---')
+
+# code to SAVE qgan arrays in a file like emd_avg , acf etc
+
+import numpy as np
+
+# Create a dictionary to store the arrays
+wgan_metrics = {
+    'emd_avg': gan.emd_avg,
+    'acf_avg': gan.acf_avg,
+    'vol_avg': gan.vol_avg,
+    'lev_avg': gan.lev_avg,
+    'generator_loss_avg': gan.generator_loss_avg,
+    'critic_loss_avg': gan.critic_loss_avg
+}
+
+# Save the dictionary to a file
+np.save('wgan_metrics.npy', wgan_metrics)
+
+print("WGAN metrics saved to wgan_metrics.npy")
 
 """## Plot Training History"""
 
