@@ -10,4 +10,4 @@
 #SBATCH --mail-user=shashi.kumar@iitgn.ac.in
 cd $SLURM_SUBMIT_DIR
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
-python3 testiio.py
+python3 wgan_iio.py
